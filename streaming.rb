@@ -1,13 +1,15 @@
+# frozen_string_literal: true
+
 require 'yaml'
 require 'twitter'
 require 'ruby_gntp'
 
 # secret
-SECRET_FILE_NAME = 'secret.yml'.freeze
+SECRET_FILE_NAME = 'secret.yml'
 
 # Growl
-GROWL_APP_NAME = 'Twitter Growl notify'.freeze
-GROWL_NOTIFICATION_NAME = 'notify'.freeze
+GROWL_APP_NAME = 'Twitter Growl notify'
+GROWL_NOTIFICATION_NAME = 'notify'
 
 # secret
 secret = YAML.load_file(SECRET_FILE_NAME)
