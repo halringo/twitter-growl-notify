@@ -33,23 +33,29 @@ growl.register(
 
 puts 'started streaming...'
 
-client.user do |object|
-  case object
-  when Twitter::Tweet
-    puts
-    puts '- - -'
-    puts
-    puts object.created_at.getlocal('+09:00').strftime('%Y/%m/%d %T')
-    puts object.uri
-    puts object.user.profile_image_url
-    puts object.user.name
-    puts object.full_text
+begin
+  client.user do |object|
+    case object
+    when Twitter::Tweet
+      puts
+      puts '- - -'
+      puts
+      puts object.created_at.getlocal('+09:00').strftime('%Y/%m/%d %T')
+      puts object.uri
+      puts object.user.profile_image_url
+      puts object.user.name
+      puts object.full_text
 
-    growl.notify(
-      name: GROWL_NOTIFICATION_NAME,
-      title: object.user.name,
-      text: object.full_text,
-      icon: object.user.profile_image_url
-    )
+      growl.notify(
+        name: GROWL_NOTIFICATION_NAME,
+        title: object.user.name,
+        text: object.full_text,
+        icon: object.user.profile_image_url
+      )
+    end
   end
+rescue Interrupt
+  puts
+  puts
+  puts 'see you!'
 end
